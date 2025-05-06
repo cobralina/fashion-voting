@@ -1,0 +1,21 @@
+/* custom styles */
+@use "../dv-globals/dv-globals" as *;
+
+.header {
+  text-align: center;
+  margin-bottom: 20px;
+  .headline {
+    font-family: $serif;
+    font-size: 32px;
+    margin-bottom: 15px;
+  }
+  /* .headline::before {
+    background-image: url("../assets/questionmark.svg");
+    background-size: cover;
+    width: 20px;
+    height: 35px;
+    content: " ";
+    display: block;
+    margin: 0 auto;
+  } */
+}

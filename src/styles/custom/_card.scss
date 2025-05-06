@@ -1,0 +1,190 @@
+/* custom styles */
+@use "../dv-globals/dv-globals" as *;
+
+@keyframes flyUpDown {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-800px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(800px);
+    opacity: 0;
+  }
+}
+
+.card {
+  width: 45%;
+  background-color: var(--dv-white);
+  transition: transform 0.2s ease-out, opacity 0.2s ease-out;
+  cursor: pointer;
+  picture {
+    img {
+      width: 95%;
+      margin-top: 2.5%;
+      //border-top-left-radius: 5px;
+      //border-top-right-radius: 5px;
+    }
+  }
+  @media only screen and (max-width: $break-xs) {
+    width: 47%;
+  }
+
+  .description {
+    background-color: var(--dv-white);
+    //background-color: $light-blue-l;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 26px;
+    font-family: $serif;
+    font-size: 16px;
+    padding: 50px 20px;
+    position: relative;
+    margin-top: -7px;
+
+    //border-radius: 0px 0px 5px 5px;
+    .credit {
+      position: absolute;
+      right: 10px;
+      top: 5px;
+      font-family: $sans;
+      font-size: 13px;
+      font-style: italic;
+      color: var(--dv-grey-400);
+    }
+    .card-text {
+      font-size: 13px;
+      margin-top: 10px;
+      font-family: $sans;
+    }
+  }
+  &:hover {
+    picture {
+      filter: brightness(1.1);
+    }
+  }
+}
+
+.favourite {
+  margin: 20px auto;
+  box-shadow: 0px 0px 10px 2px #0000001a;
+  width: 35%;
+  @media only screen and (max-width: $break-md) {
+    width: 60%;
+  }
+  @media only screen and (max-width: $break-xs) {
+    width: 90%;
+  }
+  cursor: default;
+  &:hover {
+    picture {
+      filter: brightness(1);
+    }
+  }
+  .description {
+    font-size: 20px;
+    @media only screen and (max-width: $break-xs) {
+      font-size: 16px;
+    }
+  }
+}
+
+.ranking {
+  box-shadow: 0px 0px 10px 2px #0000001a;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  position: relative;
+  cursor: default;
+  @media only screen and (max-width: $break-md) {
+    width: 100%;
+  }
+
+  &:hover {
+    picture {
+      filter: brightness(1);
+    }
+  }
+  .score-value {
+    font-size: 20px;
+    font-weight: 700;
+  }
+  .score-percent {
+    display: inline;
+    font-size: 20px;
+    font-weight: normal;
+  }
+  picture {
+    width: 50%;
+    img {
+      border-radius: 0;
+    }
+  }
+  .score {
+    position: absolute;
+    top: 40px;
+    left: calc(50% - 15px);
+    font-weight: $sans-bold;
+    font-size: 20px;
+    color: white;
+    background-color: black;
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    line-height: 30px;
+
+    @media only screen and (max-width: $break-lg) {
+      width: 25px;
+      height: 25px;
+      border-radius: 12.5px;
+      line-height: 25px;
+      font-size: 18px;
+      top: 20px;
+    }
+  }
+  .description {
+    text-align: center;
+    height: auto;
+    font-size: 16px;
+    width: 45%;
+    padding: 10px;
+    position: relative;
+    margin-top: 0;
+    margin-bottom: 6px;
+    border-radius: 0px 5px 5px 0px;
+    @media only screen and (max-width: $break-md) {
+      font-size: 20px;
+    }
+    @media only screen and (max-width: $break-sm) {
+      font-size: 16px;
+    }
+
+    .credit {
+      visibility: hidden;
+    }
+  }
+}
+
+/* .variant {
+  picture {
+    img {
+      border-radius: 0;
+    }
+  }
+  .score {
+    position: absolute;
+    left: calc(50% - 15px);
+  }
+} */
+
+.fly-out {
+  animation: flyUpDown 0.5s ease-in-out forwards;
+}
+
+.duell {
+  width: 100%;
+}

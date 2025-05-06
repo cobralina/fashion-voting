@@ -1,0 +1,21 @@
+/* custom styles */
+@use "../dv-globals/dv-globals" as *;
+
+.rankingwrapper {
+  width: 75%;
+  margin: 50px auto;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 22px 16px;
+  flex-wrap: wrap;
+  @media only screen and (max-width: $break-lg) {
+    width: 100%;
+  }
+  @media only screen and (max-width: $break-md) {
+    width: 80%;
+  }
+  @media only screen and (max-width: $break-sm) {
+    width: 100%;
+  }
+}

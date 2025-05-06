@@ -1,0 +1,22 @@
+@use "dv-globals/dv-globals" as *;
+
+@use "custom/main" as *;
+@use "custom/header" as *;
+@use "custom/card" as *;
+@use "custom/duell" as *;
+@use "custom/stripes" as *;
+@use "custom/ranking" as *;
+
+#vergleichsquiz {
+  max-width: 1280px;
+  -webkit-font-smoothing: antialiased;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+  background-color: var(--dv-faz-grey);
+  color: var(--dv-faz-blue);
+  font-family: $sans;
+  @media only screen and (max-width: $break-xs) {
+    padding: 10px;
+  }
+}

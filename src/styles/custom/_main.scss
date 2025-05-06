@@ -1,0 +1,39 @@
+/* custom styles */
+@use "../dv-globals/dv-globals" as *;
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+  font-weight: $serif-bold;
+}
+
+.subline {
+  font-family: $serif;
+  font-weight: $serif-bold;
+  font-size: 1.5em;
+  margin-top: 50px;
+}
+
+a {
+  @include dv-txtLink;
+}
+
+button {
+  @include dv-btnLink;
+}
+
+.game-wrapper {
+  margin: 0 auto;
+  width: 100%;
+  margin-top: 20px;
+
+  .quattro {
+    background-image: url("../assets/trenner-quattro.svg");
+    background-size: cover;
+    width: 26px;
+    height: 26px;
+    display: block;
+    margin: 0 auto;
+    opacity: 0.7;
+  }
+}
