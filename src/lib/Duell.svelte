@@ -7,10 +7,12 @@
 
   let data:any = [];
   let dataInStock:any = [];
-  let objectLeft = { name: "", polid: "", credit: "", text: "", show: "" };
-  let objectRight = { name: "", polid: "", credit: "", text: "", show: "" };
+  let objectLeft = { name: "", polid: "", polformat:"", credit: "", text: "", show: "" };
+  let objectRight = { name: "", polid: "", polformat: "", credit: "", text: "", show: "" };
   let stripes = 0;
-  export let apiUrl:string = "http://localhost:4000/api/data";
+  export let quizID:string = "";
+  export let apiUrl:string = "";
+  export let format:string = "";
 
   $: dataStore.subscribe((value:any) => {
     data = value;
@@ -26,7 +28,7 @@
 
   async function safeVotes(_id:Number) {
   try {
-    const response = await axios.post(apiUrl, { id: _id, votes: 1 });
+    const response = await axios.post(apiUrl, { quizid:quizID, id: _id, votes: 1 });
     console.log('Server response:', response.data);
   } catch (err) {
     console.error("Error adding/updating votes:", err);
@@ -87,6 +89,7 @@
       name={objectLeft.name}
       divID="left-card"
       pictureID={objectLeft.polid}
+      format={format}
       credit={objectLeft.credit}
       text={objectLeft.text}
       mode="duell"
@@ -97,6 +100,7 @@
       name={objectRight.name}
       divID="right-card"
       pictureID={objectRight.polid}
+      format={format}
       credit={objectRight.credit}
       text={objectRight.text}
       mode="duell"

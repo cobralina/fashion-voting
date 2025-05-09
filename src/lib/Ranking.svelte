@@ -5,6 +5,8 @@
 
   export let data:any = [];
   export let apiUrl:string = "";
+  export let favourite = { name: "", polid: "", credit: "", text: "", show: "" };
+  export let format:string = "";
 
   let totalvotes:number = 0;
   let allpercentages:any = [];
@@ -54,14 +56,27 @@ onMount(async () => {
 <div class="subline">So wählten unsere Leser:</div>
 
 <div class="rankingwrapper">
- 
+ <!-- 
 {#each rankingData as item, index}
     {#if index % 2 === 0} 
-    <Card name={item.name} mode="ranking" pictureID={item.polid} score="{index +1}" scorevalue={item.percentage}/>
+   
+    <Card name={item.name} mode="ranking" pictureID={item.polid} score="{index +1}" scorevalue={item.percentage}  {{#if item.name === favourite.name}  favourite = true {/if}}/>
   {:else}
   <Card name={item.name} mode="ranking" pictureID={item.polid} score="{index +1}" scorevalue={item.percentage} variant=true/>
   {/if}
-  {/each}
+  {/each} -->
+  {#each rankingData as item, index}
+  <Card 
+    name={item.name} 
+    mode="ranking" 
+    pictureID={item.polid} 
+    format={format}
+    score="{index + 1}" 
+    scorevalue={item.percentage} 
+    isfavourite={item.name === favourite.name} 
+    variant={index % 2 !== 0} 
+  />
+{/each}
 </div>
-<div>Es haben insgesamt {totalvotes} Leser abgestimmt.</div>
+<div style="opacity:0.5">Es haben insgesamt {totalvotes} Leser abgestimmt.</div>
 

@@ -1,40 +1,46 @@
-import { writable } from 'svelte/store';
+import { writable } from "svelte/store";
 import CryptoJS from "crypto-js";
 
-export const dataStore:any = writable([]);
-export const favouriteItem:any = writable({ name: "", id: "", credit: "", text: "", show: "" });
-export const view:any = writable("init");
-export const configs:any = writable([])
+export const dataStore: any = writable([]);
+export const favouriteItem: any = writable({
+  name: "",
+  id: "",
+  format: "",
+  credit: "",
+  text: "",
+  show: "",
+});
+export const view: any = writable("init");
+export const configs: any = writable([]);
 
 async function loadData() {
   let urlParams = new URLSearchParams(window.location.search);
-  //var encodedCiphertext = urlParams.get('duelldata');
-  var encodedCiphertext = "U2FsdGVkX1932dSe2c2WzHWvqg%2BljDiS%2B0FMVMjBXlTOZ%2FPbA4HQO%2BL%2BQIFQ1YABucAkHCdvlfdFsPwqlew3fWkLD0Dr3n4MDi0URS8SM5OtUHog2xde%2B2R3ysfmC3FXwPkFDzuQsT4xaHgqAhIkUeHNeRxvJ7%2BYXIP4%2FfWrePVLk%2BsI5hLaiuN3ioSYpn4pi2U2cft0XMY5UeJmiQfoXm332xeeGLWQH1c1XkpXetspdovecWntLSz8VduXaI5q4XqoWVs4vpw2HoGzcSnZZzdwWgcsTueWPE3Oie2HYspZAjag5AAXvqaln7nKe31cGXwUZs82u0ktRCKE%2ByuhKyc1UIsUXJZSzVnBN4mjDMkUAuaI3blaGzd1pHWG4X4c3LT8%2FJ8CPCo2l1%2BUJ6doeFD1J5v4ez1Qgsv6G%2FOntExD8ELpG7OFGMFzbE3nIfP8M5rIVShOsa6SuOgvS5A88L%2FoY%2FtlnNGvXWOjT8mYgl1wgU7T5wEYgYR95%2BslxKqzQE8P%2FkL3JifaYExJajM4MK4b1gt755q%2FomsLPX7Bph0jAgru0UHkckqyfnk0pdr4MZH1%2BbjwkB1u83tCnr59WXuKmtTPf6xYw%2FUQEHMuscDfKK7l047D1ZLCR5JpohBvlFmwTeYsGQqQEtDfXrZso8jKqdDZ0iidohAacL3TW5PYuWuTo%2FqBO2MGCwD4j19Vjg9m0x%2FYc97ItrIObtObBax9GXaJyxOjgL5AYaB46Z8uyr7csoPfF9JuiYddBL31RLAQ2IN581rlqXTjpYTJEaphv5WZ0v3JIt9nFvv4ZaB50SNVq5TnoIqEOiWOaGqv5NYwb%2Bo0%2FQDv03Ch48TMtvmm591iMyWfcBxGE588VJn4wIOqUX0UYlvFJ6lZTSLtE4EOgZE4K8iBPSc81cq5qR8r5VuQUsf5Ee3tfPu53aHUlDQAMMtTq0BQ2t4e%2BEcb0SbjRdd%2FvPrY0NUKUVcM5t7W5VHs6mmd27IKn9f%2BrFT%2FQtZDbs%2FUsOiY6oL0UfmaRG%2Bl2i6KPHWnga3ZC5eVpV4AZX6QZpHFGL7xx%2FU23V4T5HwkZ3akTFqBoqllq%2BKdcu6r6fk9ij4d%2ByEPCQdo5oOlX%2Bk9MWIjweVc8y8k6vS%2BfXijwWMtZrf0hpMpmJtUUHAN3ksxYYWcdLE9cI4M1yPrCzdFvp3j%2Blhykay0Qac%3D"
-  console.log(encodedCiphertext)
+  //var encodedCiphertext = urlParams.get("duelldata");
+  var encodedCiphertext =
+    "U2FsdGVkX1%2FihTMONu7Mt5lD%2BUUWFHLVMC4ahlaT%2FdAsTk4l6JYBClPe%2FrOWczl%2F8s%2By27vwbHwXQre%2BxQG3PZzwmxmN%2BGrWnukV%2Btv18n2SnFERTda%2FtxH5U0vf6MWBkPINDzK%2BKsiMRigaNn36s3vTv9cXmPdC%2FgI%2FKUa95necZOYvlFVJjBXRzfGXCksg%2BjOw6ZkxTGeDUo94IHuuryOs809JWMke4t0N4kTKTtL04Y6iTsZJ6yW34zVNquyhMr1pfFsDmpsm5pU4Rl2BseQU%2FRKQ7DhYtwvPkSpzH5xn5VBJA6tuxlfOPoNjBwDh8w14C5c1ERidG2mD4lB%2FpjTZso2dJkGDm0Nm4ASiFJzMwh4ai7a2g46td4pO9LTRkVF8%2FemueNYAuObnE4rddqoyfPqWxfYHpPtvDNUgeTfvFpDxBAHLbsJjMm1oUSfk2zNE%2F7v0qkEW0QL8P%2FFiOOYo%2BvvDMyca1ytK6BTbs10WgepODbvOLKvyRQQ4yj2l7tFMOTiteyLVu5ePhvz%2FQhn6joydQXWNfzHYlAQ3VMU34fOR%2BsyZuCCMFISYT4Z%2FybwNvt3xZB8GkRY6Cil3fYfNhq1cATTKoAJQGUryy%2Ff681Kp60DOwUfoLFI3nlMWRQpl02OONmIoKqmKydHYbxCmD7wGh6IvqQuSp8kjrHHEi2pTCMnqAM4A1HbyQsXUOqWsXW5tGFwehUPEmc9mnjGcLvwLzfLRMmsWCBrORhFqW6D5ULc6Rkx4sXPsaTTGMUgq6KBxpOH4pxuaVQ7PqY9PRMoT8hPD7TY98bWKhtoRUDkaYYJzk5mzH%2FImOs1BPTOYC3KlbFwGNEadxZAQHFJO1rTZZ%2FHdMQtjjudOX3Xsgvjto%2BAmV7%2B6%2B0ZCYVtROb1Gzl45Uecb%2Fwt1JNnKVROV4l6aWY8cTWuSgSJX0PpVLJMjjWJceZK7BBS3fyFR3AHEgLoKt%2B3bKfusgjSKcEReFXaqfU4OIIuSTeQN%2F%2BlZtZPI07Y7%2FyCLjL%2FvTGuVJu%2BAZkbwl7p1HTHAx3%2BXgS5Y4I1VB3mG0JDYOKM3PqdvtjL04t%2BYQ7rGqL9EPLn2hKpAEY500689UrMQf%2B02GNNUOx5usjO8f50z21%2B4VbPMI3frCh8C4ju%2BZMyWwxv4qUV6FuyNBCnE2XvmYkI6h2pEr2lXWt5CzMrukbdvAgT5rOv9LYo8CeF4xBrN6wDPqEzr6llqob%2BdmBC%2BuoVXNUplHRsYzqXRtExX8B0K3j67EAlHTC6FRf%2FspS1t7zqD74WJRd0LwsNnS%2FBXclg%2BvbpkvHQDVGN5%2Fn22zZyl6LXplUrCjlpoaj7bxzBZeTdZJAsOU%2BGE8Dy2K%2BARCOXt8C6DQo7zTA96gP4WDAC4ktsDam5RG7fWJoiZwOtvWDdGi2Mf%2BNNqkNTRz4vAu0nWp0PFfuFMHcPg3Mp1VhYsj7A09KpUUjPoBJ3Rc4WnIa8YHAmf%2BNRgbktmfDPSh4bYQ3zzGY7EJs5TVUIjRDnCIHJp1g2KqtdW6CEqlWxC%2FIts725wVDOxpapjsWtqfDLRSM5T9ASxHmC6JtQa%2FLbOf0ov7MO7JuSoXYxnRi4bp6XQQx3wJQes9s0kw%2BiLdAYLhVToMs3qL6YUS9j2UKaibHcZyckt7q2HyDSF9P5h8RKG";
+  console.log(encodedCiphertext);
 
   if (encodedCiphertext !== null) {
-
     // Decode the ciphertext
-      var ciphertext = decodeURIComponent(encodedCiphertext);
-      console.log(ciphertext)
-    
-      var bytes = CryptoJS.AES.decrypt(ciphertext, "ummodeduell82");
-      console.log("bytes: ", bytes);
-      var decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
-      console.log("decrptefdData: ",decryptedData);}
+    var ciphertext = decodeURIComponent(encodedCiphertext);
+    console.log(ciphertext);
 
+    var bytes = CryptoJS.AES.decrypt(ciphertext, "ummodeduell82");
+    console.log("bytes: ", bytes);
+    var decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+    console.log("decrptefdData: ", decryptedData);
+  }
 
   try {
     const data = decryptedData.data;
     dataStore.set(data);
+    console.log("dataStore: ", data);
 
     const confdata = decryptedData.configs;
     configs.set(confdata);
-   
   } catch (error) {
-    console.error('Fehler:', error);
+    console.error("Fehler:", error);
   }
 }
 
 loadData();
-

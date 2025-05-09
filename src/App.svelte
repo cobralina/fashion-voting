@@ -12,9 +12,11 @@
   //let dbUrlParts:string = "http://localhost:4000/participants";
   let state:string = "init";
   let favourite = { name: "", polid: "", credit: "", text: "", show: "" };
-  let apiUrl:string = "http://localhost:4000/api/data";
+  let quizID:string = "";
+  let apiUrl:string = "http://localhost:4000/api/data/"
+  let globalFormat:string = "";
 
-  console.log("api-url:", apiUrl);
+
 
   $: dataStore.subscribe((value:any) => {
     data = value;
@@ -30,20 +32,28 @@
 
   $: configs.subscribe((value:any) => {
     metas = value;
+    quizID = metas[0].duellid;
+    globalFormat = metas[0].polformat;
+    apiUrl = "http://localhost:4000/api/data/" + quizID
+    console.log("quizID", quizID);
+    console.log("apiURL", apiUrl);
+    console.log("globalFormat", globalFormat);
+
   });
+
 
 </script>
 
 <main>
- <Header headline ={ metas[0].headline }/>
-  {#if state === "init"}<Duell apiUrl={apiUrl}></Duell> {/if}
+ <Header headline ={ metas[0].headline } subline={ metas[0].subline }/>
+  {#if state === "init"}<Duell apiUrl={apiUrl} quizID={quizID} format={globalFormat}></Duell> {/if}
  {#if state === "finish"}
-<Favourite favourite={favourite}></Favourite> 
+<Favourite favourite={favourite} format={globalFormat}></Favourite> 
 <div class="game-wrapper">
 <div class="seperator quattro"></div>
 </div>
  
-<Ranking data={data} apiUrl={apiUrl}></Ranking>{/if}
+<Ranking data={data} apiUrl={apiUrl} favourite={favourite} format={globalFormat}></Ranking>{/if}
  
 
   <div class="game-wrapper">

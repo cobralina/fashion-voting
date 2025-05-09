@@ -1,33 +1,32 @@
 //Grafikfarben lightmode
-$blue-l: #2962A3;
-$light-blue-l: #93BCEC;
-$red-l: #A82424;
-$light-red-l: #EF8F8F;
-$green-l: #548A42;
-$light-green-l: #B1DCA3;
-$orange-l: #C24E0A;
-$light-orange-l: #F2B28C;
+$blue-l: #2962a3;
+$light-blue-l: #93bcec;
+$red-l: #a82424;
+$light-red-l: #ef8f8f;
+$green-l: #548a42;
+$light-green-l: #b1dca3;
+$orange-l: #c24e0a;
+$light-orange-l: #f2b28c;
 $violet-l: #613399;
-$light-violet-l: #BB99E5;
-$yellow-l: #C28E0A;
-$light-yellow-l: #F2D58C;
-$light-warmcarpet: #FBF2E9;
+$light-violet-l: #bb99e5;
+$yellow-l: #c28e0a;
+$light-yellow-l: #f2d58c;
+$light-warmcarpet: #fbf2e9;
 
 //Grafikfarben darkmode
-$blue-d: #2962A3;
-$light-blue-d: #93BCEC;
-$red-d: #A82424;
-$light-red-d: #EF8F8F;
-$green-d: #548A42;
-$light-green-d: #B1DCA3;
-$orange-d: #C24E0A;
-$light-orange-d: #F2B28C;
+$blue-d: #2962a3;
+$light-blue-d: #93bcec;
+$red-d: #a82424;
+$light-red-d: #ef8f8f;
+$green-d: #548a42;
+$light-green-d: #b1dca3;
+$orange-d: #c24e0a;
+$light-orange-d: #f2b28c;
 $violet-d: #613399;
-$light-violet-d: #BB99E5;
-$yellow-d: #C28E0A;
-$light-yellow-d: #F2D58C;
+$light-violet-d: #bb99e5;
+$yellow-d: #c28e0a;
+$light-yellow-d: #f2d58c;
 $dark-warmcarpet: #f1c191;
-
 
 //lightmode
 $black-l: #212529;
@@ -37,8 +36,8 @@ $grey-300-l: #717171;
 $grey-400-l: #8e8e8e;
 $grey-500-l: #aaaaaa;
 $grey-600-l: #c6c6c6;
-$grey-700-l: #E3E3E3;
-$grey-900-l: #F7F7F7;
+$grey-700-l: #e3e3e3;
+$grey-900-l: #f7f7f7;
 $white-l: #ffffff;
 $white-opaque-l: rgba(255, 255, 255, 0.9);
 $grey-700-opaque-l: rgba(227, 227, 227, 0.9);
@@ -46,8 +45,8 @@ $grey-600-l-hover: #e2e2e2;
 
 //darkmode
 $black-d: #ffffff;
-$grey-100-d: #F7F7F7;
-$grey-200-d: #E3E3E3;
+$grey-100-d: #f7f7f7;
+$grey-200-d: #e3e3e3;
 $grey-300-d: #c6c6c6;
 $grey-400-d: #aaaaaa;
 $grey-500-d: #8e8e8e;
@@ -59,18 +58,16 @@ $white-opaque-d: rgba(33, 37, 41, 0.9);
 $grey-700-opaque-d: rgba(85, 85, 85, 0.9);
 $grey-600-d-hover: #494b4d;
 
-
 //Brand-Farben lightmode
-$faz-blue-l: #110A35;
-$faz-grey-l: #E8EDEE;
+$faz-blue-l: #110a35;
+$faz-grey-l: #e8edee;
 
 //Brand-Farben darkmode
-$faz-blue-d: #E8EDEE;
-$faz-grey-d: #323D46;
-
+$faz-blue-d: #e8edee;
+$faz-grey-d: #323d46;
 
 //dark- & lightmode
-$faz-grey-permanent: #E8EDEE;
+$faz-grey-permanent: #e8edee;
 $faz-grey-permanent-hover: #e8edee80;
 
 $hover-black-permanent: #909294;
@@ -88,7 +85,7 @@ $hover-black-permanent: #909294;
     --dv-grey-700: #{$grey-700-l};
     --dv-grey-900: #{$grey-900-l};
     --dv-faz-blue: #{$faz-blue-l};
-    --dv-faz-grey: #{$faz-grey-permanent};
+    --dv-faz-grey: #{$faz-grey-l};
     --dv-white: #{$white-l};
     --dv-white-opaque: #{$white-opaque-l};
     --dv-grey-700-opaque: #{$grey-700-opaque-l};
@@ -110,7 +107,7 @@ $hover-black-permanent: #909294;
     --dv-grey-700: #{$grey-700-d};
     --dv-grey-900: #{$grey-900-d};
     --dv-faz-blue: #{$faz-blue-d};
-    --dv-faz-grey: #{$faz-grey-permanent};
+    --dv-faz-grey: #{$faz-grey-d};
     --dv-white: #{$white-d};
     --dv-white-opaque: #{$white-opaque-d};
     --dv-grey-700-opaque: #{$grey-700-opaque-d};
