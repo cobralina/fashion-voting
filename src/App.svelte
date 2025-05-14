@@ -35,10 +35,7 @@
     quizID = metas[0].duellid;
     globalFormat = metas[0].polformat;
     apiUrl = "http://localhost:4000/api/data/" + quizID
-    console.log("quizID", quizID);
-    console.log("apiURL", apiUrl);
-    console.log("globalFormat", globalFormat);
-
+  
   });
 
 

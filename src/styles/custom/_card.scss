@@ -16,16 +16,16 @@
 }
 
 .card {
-  width: 45%;
+  position: relative;
+  z-index: 1;
+  width: 100%;
   background-color: var(--dv-white);
-  transition: transform 0.2s ease-out, opacity 0.2s ease-out;
+  //transition: all 0.3s ease;
   cursor: pointer;
   picture {
     img {
       width: 95%;
       margin-top: 2.5%;
-      //border-top-left-radius: 5px;
-      //border-top-right-radius: 5px;
     }
   }
   @media only screen and (max-width: $break-xs) {
@@ -34,19 +34,16 @@
 
   .description {
     background-color: var(--dv-white);
-    //background-color: $light-blue-l;
     text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
-    //height: 26px;
     font-family: $serif;
     font-size: 16px;
     padding: 30px 20px;
     position: relative;
     margin-top: -7px;
 
-    //border-radius: 0px 0px 5px 5px;
     .credit {
       position: absolute;
       right: 10px;
@@ -65,6 +62,7 @@
   &:hover {
     picture {
       filter: brightness(1.1);
+      transition: filter 0.3s ease;
     }
   }
 }
@@ -73,7 +71,7 @@
   margin: 20px auto;
   margin-bottom: 50px;
   box-shadow: 0px 0px 10px 2px #0000001a;
-  width: 35%;
+  width: 28%;
   @media only screen and (max-width: $break-md) {
     width: 60%;
   }
@@ -101,6 +99,7 @@
   align-items: stretch;
   position: relative;
   cursor: default;
+  width: 35%;
   @media only screen and (max-width: $break-md) {
     width: 100%;
   }
@@ -123,20 +122,22 @@
     width: 50%;
     img {
       border-radius: 0;
+      width: 93%;
+      margin-top: 3.7%;
     }
   }
   .score {
     position: absolute;
-    top: 40px;
+    top: 20px;
     left: calc(50% - 15px);
     font-weight: $sans-bold;
-    font-size: 20px;
+    font-size: 18px;
     color: white;
     background-color: black;
-    width: 30px;
-    height: 30px;
+    width: 28px;
+    height: 28px;
     border-radius: 15px;
-    line-height: 30px;
+    line-height: 28px;
 
     @media only screen and (max-width: $break-lg) {
       width: 25px;
@@ -177,22 +178,28 @@
   }
 }
 
-/* .variant {
-  picture {
-    img {
-      border-radius: 0;
-    }
-  }
-  .score {
-    position: absolute;
-    left: calc(50% - 15px);
-  }
-} */
-
 .fly-out {
   animation: flyUpDown 0.5s ease-in-out forwards;
 }
 
 .duell {
   width: 100%;
+}
+
+.card-clone {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 20;
+  pointer-events: none;
+}
+
+.flying-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+  pointer-events: none;
 }

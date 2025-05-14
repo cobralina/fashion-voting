@@ -2,20 +2,97 @@
 @use "../dv-globals/dv-globals" as *;
 
 .rankingwrapper {
-  width: 75%;
-  margin: 50px auto;
-  margin-bottom: 30px;
-  display: flex;
-  justify-content: center;
-  gap: 22px 16px;
-  flex-wrap: wrap;
-  @media only screen and (max-width: $break-lg) {
+  .collapsingBox {
+    width: 75%;
+    margin: 50px auto;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 22px 16px;
+    flex-wrap: wrap;
+    @media only screen and (max-width: $break-lg) {
+      width: 100%;
+    }
+    @media only screen and (max-width: $break-md) {
+      width: 80%;
+    }
+    @media only screen and (max-width: $break-sm) {
+      width: 100%;
+    }
+  }
+  .collapsingBox input {
+    display: none;
+    order: 2;
+  }
+  .collapsingBox label {
+    cursor: pointer;
+    color: var(--dv-faz-blue);
+    font-size: 16px;
+    order: 3;
+    padding: 5px 20px;
+    border-radius: 2px;
+    border: 1px solid var(--dv-faz-blue);
+    min-width: 150px;
+    text-align: center;
+    margin: 20px auto 0;
+  }
+  .collapsingBox label:hover {
+    background-color: var(--dv-white);
+    opacity: 0.8;
+  }
+
+  .collapsingBox .content {
+    max-height: var(--card-height, 230px);
+    overflow: hidden;
+    transition: max-height 1s;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    gap: 22px 16px;
+    flex-wrap: wrap;
+    @media only screen and (max-width: $break-sm) {
+      max-height: 200px;
+    }
+  }
+
+  .collapsingBox .content:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    /* background: linear-gradient(
+      0deg,
+      rgba(232, 237, 238, 1) 0%,
+      rgba(255, 255, 255, 0) 100%
+    ); */
+    height: 80px;
     width: 100%;
   }
-  @media only screen and (max-width: $break-md) {
-    width: 80%;
+
+  /*  @media (prefers-color-scheme: dark) {
+    .collapsingBox .content:after {
+      background: linear-gradient(
+        0deg,
+        rgba(33, 37, 41, 1) 0%,
+        rgba(33, 37, 41, 0) 100%
+      );
+    }
+  } */
+
+  .collapsingBox input:checked + label + .content {
+    max-height: 6000px;
   }
-  @media only screen and (max-width: $break-sm) {
-    width: 100%;
+
+  .collapsingBox input:checked + label + .content:after {
+    background: unset;
+  }
+  .collapsingBox input + label span:last-of-type {
+    display: none;
+  }
+  .collapsingBox input:checked + label span:first-of-type {
+    display: none;
+  }
+  .collapsingBox input:checked + label span:last-of-type {
+    display: inline;
   }
 }

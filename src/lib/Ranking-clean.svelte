@@ -12,40 +12,6 @@
   let allpercentages:any = [];
   let rankingData:any = [];
 
-  function updateCollapsingBoxHeight() {
-    const cards = document.querySelectorAll('.ranking');
-    
-    if (cards.length > 0) {
-      const firstCardHeight = cards[0].clientHeight + 15;
-      
-      // CSS-Variable auf dem :root oder einem Container-Element setzen
-      document.documentElement.style.setProperty('--card-height', `${firstCardHeight}px`);
-      
-      console.log(`CSS-Variable --card-height auf ${firstCardHeight}px gesetzt`);
-    }
-  }
-  
-
-  onMount(() => {
-    setTimeout(updateCollapsingBoxHeight, 100);
-    
-    const resizeObserver = new ResizeObserver(entries => {
-      updateCollapsingBoxHeight();
-    });
-    
-    const firstCard = document.querySelector('.ranking');
-    if (firstCard) {
-      resizeObserver.observe(firstCard);
-    }
-    
-    return () => {
-      if (firstCard) {
-        resizeObserver.unobserve(firstCard);
-      }
-      resizeObserver.disconnect();
-    };
-  });
-
   async function getTotalVotes() {
   try {
     const response = await axios.get(`${apiUrl}/total`);
@@ -90,10 +56,7 @@ onMount(async () => {
 <div class="subline">So wählten unsere Leser:</div>
 
 <div class="rankingwrapper">
-  <div class="collapsingBox">
-    <input type="checkbox" id="ranklist" /><label for="ranklist"><span>Mehr anzeigen</span><span>Weniger anzeigen</span></label>
-    <div class="content">
-    <!-- 
+ <!-- 
 {#each rankingData as item, index}
     {#if index % 2 === 0} 
    
@@ -114,9 +77,6 @@ onMount(async () => {
     variant={index % 2 !== 0} 
   />
 {/each}
-<div style="opacity:0.5;">Es haben insgesamt {totalvotes} Leser abgestimmt.</div>
-</div></div></div>
-
-
-
+</div>
+<div style="opacity:0.5">Es haben insgesamt {totalvotes} Leser abgestimmt.</div>
 
