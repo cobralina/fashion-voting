@@ -1,64 +1,66 @@
-@use 'variables' as *;
-@use 'colors' as *;
+@use "variables" as *;
+@use "colors" as *;
 
 @mixin dv-txtLink {
-    color: inherit;
-    border-color: var(--dv-grey-600);
-    border-style: solid;
-    border-width: 0px 0px 0.09375rem;
-    cursor: pointer;
-    text-decoration: none;
+  color: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  border-color: var(--dv-grey-600);
+  border-style: solid;
+  border-width: 0px 0px 0.09375rem;
+  cursor: pointer;
+  text-decoration: none;
 
-    &:hover {
-        opacity: 0.5;
-    }
+  &:hover {
+    opacity: 0.5;
+  }
 }
 
 @mixin dv-btnLink {
-    font-family: $sans;
-    font-size: .875rem; // add size-system
-    font-weight: 500;
-    line-height: 1.1;
-    color: $faz-blue-l;
-    background-color: $faz-grey-permanent;
-    border-radius: .125rem;
-    border-width: 0;
-    outline: none;
-    height: 40px;
-    padding: 0 20px;
-    display: inline-flex;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-    gap: 4px;
-    cursor: pointer;
-    transition: all .3s ease-in-out;
-    text-decoration: none;
+  font-family: $sans;
+  font-size: 0.875rem; // add size-system
+  font-weight: 500;
+  line-height: 1.1;
+  color: $faz-blue-l;
+  background-color: $faz-grey-permanent;
+  border-radius: 0.125rem;
+  border-width: 0;
+  outline: none;
+  height: 40px;
+  padding: 0 20px;
+  display: inline-flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  text-decoration: none;
 
-    &:hover {
-        color: $faz-blue-l;
-        background-color: $faz-grey-permanent-hover;
-    }
+  &:hover {
+    color: $faz-blue-l;
+    background-color: $faz-grey-permanent-hover;
+  }
 }
 
 @mixin dv-wgtHeader {
-    >h2 {
-        font-family: $serif;
-        font-weight: 500;
-        font-size: 1.375rem;
-        line-height: 1.2;
-        margin-bottom: 0;
+  > h2 {
+    font-family: $serif;
+    font-weight: 500;
+    font-size: 1.375rem;
+    line-height: 1.2;
+    margin-bottom: 0;
 
-        @media (min-width: $break-sm) {
-            font-size: 2rem;
-        }
+    @media (min-width: $break-sm) {
+      font-size: 2rem;
     }
+  }
 
-    >p {
-        font-family: $sans;
-        font-weight: 700;
-        font-size: 0.875rem;
-        line-height: 1.2rem;
-        margin: 0 0 1rem 0;
-    }
+  > p {
+    font-family: $sans;
+    font-weight: 700;
+    font-size: 0.875rem;
+    line-height: 1.2rem;
+    margin: 0 0 1rem 0;
+  }
 }

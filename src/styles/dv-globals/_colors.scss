@@ -12,6 +12,10 @@ $light-violet-l: #bb99e5;
 $yellow-l: #c28e0a;
 $light-yellow-l: #f2d58c;
 $light-warmcarpet: #fbf2e9;
+$topic-green-l: #e7f3ee;
+$topic-red-l: #fbf2e9;
+$topic-blue-l: #e7eff5;
+$topic-olive-l: #ebebe5;
 
 //Grafikfarben darkmode
 $blue-d: #2962a3;
@@ -27,6 +31,10 @@ $light-violet-d: #bb99e5;
 $yellow-d: #c28e0a;
 $light-yellow-d: #f2d58c;
 $dark-warmcarpet: #f1c191;
+$topic-green-d: #264038;
+$topic-red-d: #561e1e;
+$topic-blue-d: #183950;
+$topic-olive-d: #5d4d19;
 
 //lightmode
 $black-l: #212529;
@@ -91,6 +99,10 @@ $hover-black-permanent: #909294;
     --dv-grey-700-opaque: #{$grey-700-opaque-l};
     --dv-grey-600-hover: #{$grey-600-l-hover};
     --dv-warmcarpet: #{$light-warmcarpet};
+    --dv-topic-green: #{$topic-green-l};
+    --dv-topic-red: #{$topic-red-l};
+    --dv-topic-blue: #{$topic-blue-l};
+    --dv-topic-olive: #{$topic-olive-l};
   }
 }
 
@@ -113,5 +125,9 @@ $hover-black-permanent: #909294;
     --dv-grey-700-opaque: #{$grey-700-opaque-d};
     --dv-grey-600-hover: #{$grey-600-d-hover};
     --dv-warmcarpet: #{$dark-warmcarpet};
+    --dv-topic-green: #{$topic-green-d};
+    --dv-topic-red: #{$topic-red-d};
+    --dv-topic-blue: #{$topic-blue-d};
+    --dv-topic-olive: #{$topic-olive-d};
   }
 }

@@ -3,8 +3,8 @@
 
 .rankingwrapper {
   .collapsingBox {
-    width: 75%;
-    margin: 50px auto;
+    //width: 75%;
+    margin: 20px auto;
     margin-bottom: 30px;
     display: flex;
     justify-content: center;
@@ -25,62 +25,58 @@
     order: 2;
   }
   .collapsingBox label {
-    cursor: pointer;
-    color: var(--dv-faz-blue);
-    font-size: 16px;
+    @include dv-txtLink;
     order: 3;
-    padding: 5px 20px;
-    border-radius: 2px;
-    border: 1px solid var(--dv-faz-blue);
-    min-width: 150px;
-    text-align: center;
-    margin: 20px auto 0;
+    border: 0;
   }
   .collapsingBox label:hover {
-    background-color: var(--dv-white);
-    opacity: 0.8;
+    opacity: 0.5;
+  }
+
+  .collapsingBox label span.up::before {
+    content: "";
+    display: inline-block;
+    width: 28px;
+    height: 24px;
+    background-image: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23212529' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M9 13L12 10L15 13M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' /%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-size: contain;
+    vertical-align: middle;
+    @media (prefers-color-scheme: dark) {
+      background-image: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M9 13L12 10L15 13M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' /%3E%3C/svg%3E");
+    }
+  }
+
+  .collapsingBox label span.down::before {
+    content: "";
+    display: inline-block;
+    width: 28px;
+    height: 24px;
+    background-image: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23212529' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M9 11L12 14L15 11M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' /%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-size: contain;
+    vertical-align: middle;
+    @media (prefers-color-scheme: dark) {
+      background-image: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M9 11L12 14L15 11M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' /%3E%3C/svg%3E");
+    }
   }
 
   .collapsingBox .content {
     max-height: var(--card-height, 230px);
+    //width: 75%;
     overflow: hidden;
-    transition: max-height 1s;
+    transition: max-height 0.3s;
     position: relative;
     display: flex;
     justify-content: center;
     gap: 22px 16px;
     flex-wrap: wrap;
-    @media only screen and (max-width: $break-sm) {
-      max-height: 200px;
-    }
+    padding-bottom: 7px;
   }
-
-  .collapsingBox .content:after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    /* background: linear-gradient(
-      0deg,
-      rgba(232, 237, 238, 1) 0%,
-      rgba(255, 255, 255, 0) 100%
-    ); */
-    height: 80px;
-    width: 100%;
-  }
-
-  /*  @media (prefers-color-scheme: dark) {
-    .collapsingBox .content:after {
-      background: linear-gradient(
-        0deg,
-        rgba(33, 37, 41, 1) 0%,
-        rgba(33, 37, 41, 0) 100%
-      );
-    }
-  } */
 
   .collapsingBox input:checked + label + .content {
     max-height: 6000px;
+    transition: max-height 1s;
   }
 
   .collapsingBox input:checked + label + .content:after {
@@ -94,5 +90,32 @@
   }
   .collapsingBox input:checked + label span:last-of-type {
     display: inline;
+  }
+}
+
+.preloader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 2rem;
+  color: var(--dv-black);
+  font-size: 0.9rem;
+  opacity: 0.5;
+}
+
+.spinner {
+  display: block;
+  width: 2rem;
+  height: 2rem;
+  border: 3px solid var(--dv-white);
+  border-top-color: var(--dv-grey-200);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
   }
 }

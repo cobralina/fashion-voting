@@ -8,7 +8,13 @@ const packageInfo = require("./package.json");
 const sanitizedPackageName = packageInfo.name;
 
 // Generate HTML content based on placeholders
-function generateHtmlContent(isIframe, sanitizedPackageName, public_folder, packageInfoVersion, mode) {
+function generateHtmlContent(
+  isIframe,
+  sanitizedPackageName,
+  public_folder,
+  packageInfoVersion,
+  mode
+) {
   let checkDomain = ``;
   if (mode != "test" && mode != "development") {
     const domain = "https://" + new URL(public_folder).hostname;
@@ -21,15 +27,34 @@ function generateHtmlContent(isIframe, sanitizedPackageName, public_folder, pack
   if (isIframe) {
     return {
       polopoly: `
-          <iframe id="iframe${sanitizedPackageName}" src="${public_folder}/iframe.html" frameborder="0" style="width: 100%"></iframe>
+          <iframe id="iframe${sanitizedPackageName}" src="${public_folder}/iframe.html?id=${sanitizedPackageName}" data-duelldata="" frameborder="0" style="width: 100%"></iframe>
           <script>
+            function sendDuelldata${sanitizedPackageName}() {
+              var iframe = document.getElementById("iframe${sanitizedPackageName}");
+              if (!iframe || !iframe.contentWindow) return;
+              var data = iframe.getAttribute("data-duelldata") || iframe.getAttribute("data");
+              if (!data) return;
+              iframe.contentWindow.postMessage({ duelldata: data, id: "${sanitizedPackageName}" }, "*");
+            }
             function handle${sanitizedPackageName}(event) {
               ${checkDomain}
+              var iframe = document.getElementById("iframe${sanitizedPackageName}");
+              if (!iframe) return;
+              if (event.data && event.data.duelldataRequest === "${sanitizedPackageName}") {
+                sendDuelldata${sanitizedPackageName}();
+              }
               if (event.data.iframeHeight${sanitizedPackageName}) {
-                document.getElementById("iframe${sanitizedPackageName}").style.height = event.data.iframeHeight${sanitizedPackageName} + 10 + "px";
+                iframe.style.height = event.data.iframeHeight${sanitizedPackageName} + 10 + "px";
+              }
+              if (event.data.scrollToIframe${sanitizedPackageName}) {
+                iframe.scrollIntoView({ behavior: "auto", block: "start" });
               }
             }
             window.addEventListener("message", handle${sanitizedPackageName}, false);
+            var iframe${sanitizedPackageName} = document.getElementById("iframe${sanitizedPackageName}");
+            if (iframe${sanitizedPackageName}) {
+              iframe${sanitizedPackageName}.addEventListener("load", sendDuelldata${sanitizedPackageName});
+            }
           </script>
       `,
       iframe: `
@@ -41,7 +66,7 @@ function generateHtmlContent(isIframe, sanitizedPackageName, public_folder, pack
   <meta name="robots" content="noindex,indexifembedded" />
   <title>${sanitizedPackageName}</title>
 </head>
-<body style="padding: 0;margin: 0">
+<body class="iframebody" style="padding: 0;margin: 0;">
 <!-- START ${sanitizedPackageName} (iframe version) -->
   <link rel="stylesheet" href="${public_folder}/css/styles.css" />
   <div data-version="${packageInfoVersion}" id="${sanitizedPackageName}"></div>
@@ -69,9 +94,9 @@ function generateHtmlContent(isIframe, sanitizedPackageName, public_folder, pack
         var app${sanitizedPackageName} = document.getElementById("${sanitizedPackageName}");
         var iframeHeight = app${sanitizedPackageName}.scrollHeight;
         var urlParams = new URLSearchParams(window.location.search);
-        let wwID = urlParams.get('id');
+        let wwID = urlParams.get("id") || "${sanitizedPackageName}";
         if (iframeHeight) {
-          parent.postMessage({ ['iframeHeight' + wwID]: iframeHeight }, "*");
+          parent.postMessage({ ["iframeHeight" + wwID]: iframeHeight }, "*");
         }
       }, 1000);
     };
@@ -127,11 +152,21 @@ export default ({ mode }) => {
   }
 
   // Fetch the appropriate HTML content
-  const htmlContent = generateHtmlContent(isIframe, sanitizedPackageName, public_folder, packageInfo.version, mode);
+  const htmlContent = generateHtmlContent(
+    isIframe,
+    sanitizedPackageName,
+    public_folder,
+    packageInfo.version,
+    mode
+  );
 
-  console.log("------------------------------------------------------------------------");
+  console.log(
+    "------------------------------------------------------------------------"
+  );
   console.log(" " + packageInfo.name + " - " + packageInfo.version);
-  console.log("------------------------------------------------------------------------");
+  console.log(
+    "------------------------------------------------------------------------"
+  );
 
   return defineConfig({
     base: public_folder,
@@ -195,7 +230,7 @@ export default ({ mode }) => {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${sanitizedPackageName}</title>
   </head>
-  <body>
+  <body class="iframbody">
     ${htmlContent.polopoly.trim()}
   </body>
 </html>`,

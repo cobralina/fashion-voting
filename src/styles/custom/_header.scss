@@ -7,8 +7,13 @@
   .headline {
     font-family: $serif;
     font-size: 32px;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
+    font-weight: $serif-bold;
+    @media only screen and (max-width: $break-sm) {
+      font-size: 24px;
+    }
   }
+
   /* .headline::before {
     background-image: url("../assets/questionmark.svg");
     background-size: cover;

@@ -7,15 +7,19 @@ h1 {
   font-weight: $serif-bold;
 }
 
+a {
+  @include dv-txtLink;
+}
+
 .subline {
   font-family: $serif;
   font-weight: $serif-bold;
-  font-size: 1.5em;
-  margin-top: 30px;
-}
-
-a {
-  @include dv-txtLink;
+  font-size: 24px;
+  @media only screen and (max-width: $break-sm) {
+    font-size: 20px;
+    font-weight: $serif-weight;
+  }
+  //margin-top: 30px;
 }
 
 button {
@@ -34,15 +38,10 @@ button {
     height: 26px;
     display: block;
     margin: 0 auto;
+    margin-bottom: 20px;
     opacity: 0.7;
     @media (prefers-color-scheme: dark) {
       background-image: url("../assets/trenner-cards-dm.svg");
-      background-size: cover;
-      width: 26px;
-      height: 26px;
-      display: block;
-      margin: 0 auto;
-      opacity: 0.7;
     }
   }
 }
